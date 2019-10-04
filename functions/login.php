@@ -18,7 +18,13 @@
 			$active=$row['active'];
 
 			if($active==1){
-					//Listing down the response
+				
+				$access_token=$email.microtime();
+				$access_token=sha1($access_token);
+				$sql1="UPDATE alumnus SET access_token='$access_token' WHERE email='$email'";
+				$result1=query($sql1);
+
+				//Listing down the response
 				$messages['rollno']=$row['rollno'];
 				$messages['first_name']=$row['first_name'];
 				$messages['last_name']=$row['last_name'];
@@ -39,6 +45,7 @@
 				$messages['city']=$row['city'];
 				$messages['achievements']=$row['achievements'];
 				$messages['img_url']=$row['img_url'];
+				$messages['access_token']=$access_token;
 
 				$response['status']=202;
 				$response['messages']=$messages;
