@@ -12,11 +12,13 @@
         if(isset($_POST['images']))
         $images = clean($_POST['images']);
         else $images = serialize(array());
+        $upvotes = serialize(array());
+        $downvotes = serialize(array());
         if(empty($body)){
             $messages[] = "Message can not be empty.";
             $response['status'] = 408;
         }else{
-            $sql = "INSERT INTO `threads`(`post_id`, `thread_time`, `thread_body`, `thread_imgs`, `user_id`) VALUES ($post_id, NOW(), '$body', '$images', $user_id)";
+            $sql = "INSERT INTO `threads`(`post_id`, `thread_time`, `thread_body`, `thread_imgs`, `user_id`,`thread_upvotes`,`thread_downvotes`) VALUES ($post_id, NOW(), '$body', '$images', $user_id, '$upvotes', '$downvotes')";
             $result = query($sql);
             // may be we can also store these threads as array in post
             // $sql2 = "SELECT `thread_ids` FROM `posts` WHERE `id`=$post_id";
