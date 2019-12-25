@@ -10,7 +10,7 @@
         $offset = $_GET['offset'];
         $limit = $_GET['limit'];
 
-        $sql = "SELECT `id`,`user_id`, `cat_id`, `post_time`, `title`, `body`, `upvotes_ids`, `downvotes_ids` FROM `posts` LIMIT $offset,$limit";
+        $sql = "SELECT `id`,`user_id`, `cat_id`, `post_time`, `title`, `body`, `upvotes_ids`, `downvotes_ids` FROM `posts` ORDER BY `post_time` DESC LIMIT $offset,$limit";
         $result = query($sql);
         if(row_count($result) == 0){
             $response['status'] = 409;
