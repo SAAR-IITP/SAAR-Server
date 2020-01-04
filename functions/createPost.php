@@ -11,7 +11,7 @@
         $title = clean($_POST['title']);
         $body = clean($_POST['body']);
         if(isset($_POST['images']))
-        $images = clean($_POST['images']);
+        $images = $_POST['images'];
         else $images = serialize(array());
         $thread_ids = serialize(array());
         $upvotes_ids = serialize(array());
@@ -24,8 +24,14 @@
         }else{
             $sql = "INSERT INTO `posts`(`user_id`, `cat_id`, `post_time`, `title`, `body`, `images`,`thread_ids`,`upvotes_ids`, `downvotes_ids`) VALUES ($user_id, $cat_id, NOW(), '$title','$body','$images','$thread_ids','$upvotes_ids','$downvotes_ids')";
             $result = query($sql);
-            $response['status'] = 209;
-            $messages[] = "Posted Successfully";  
+            if($result){
+                $response['status'] = 209;
+                $messages[] = "Posted Successfully";  
+            }else{
+                $response['status'] = 408;
+                $messages[] = "Query Failed";
+            }
+            
         }
         $response['messages'] = $messages;
         echo json_encode($response);
