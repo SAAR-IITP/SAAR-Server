@@ -69,9 +69,35 @@ function send_email($email,$subject,$msg, $replyto = 'hayyoulistentome@gmail.com
 	}
 }
 
+function format_date($ar){
+	$ar = explode(' ',$ar);
+    $date = explode('-',$ar[0]);
+    $time = explode(':',$ar[1]);   
+	$convertmon = array(
+		"01" => "Jan",
+		"02" => "Feb",
+		"03" => "Mar",
+		"04" => "Apr",
+		"05" => "May",
+		"06" => "Jun",
+		"07" => "Jul",
+		"08" => "Aug",
+		"09" => "Sep",
+		"10" => "Oct",
+		"11" => "Nov",
+		"12" => "Dec"
+	);
+	$formated = array( $date[2].' '.$convertmon[$date['1']].' '.$date[0],
+		$time[0].':'.$time[1]
+	);
+	return $formated;
+}
+
+
 	function test_input($data) {
 		$data = trim($data);
 		$data = stripslashes($data);
 		$data = htmlspecialchars($data);
 		return $data;
 	}
+

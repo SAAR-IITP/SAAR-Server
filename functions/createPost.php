@@ -8,8 +8,8 @@
 
         $user_id = clean($_POST['user_id']);
         $cat_id = clean($_POST['cat_id']);
-        $title = clean($_POST['title']);
-        $body = clean($_POST['body']);
+        $title = addslashes(clean($_POST['title']));
+        $body = addslashes(clean($_POST['body']));
         if(isset($_POST['images']))
         $images = $_POST['images'];
         else $images = serialize(array());

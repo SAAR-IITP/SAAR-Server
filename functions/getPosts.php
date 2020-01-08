@@ -20,9 +20,9 @@
                 $post['id'] = $row['id'];
                 $post['user_id'] = $row['user_id'];
                 $post['cat_id'] = $row['cat_id'];
-                $post['post_time'] = $row['post_time'];
-                $post['title'] = $row['title'];
-                $post['body'] = substr($row['body'],0,50);
+                $post['post_time'] = format_date($row['post_time']);
+                $post['title'] = stripcslashes($row['title']);
+                $post['body'] = stripcslashes(substr($row['body'],0,200));
                 $post['upvotes'] = count(unserialize($row['upvotes_ids']));
                 $post['downvotes'] = count(unserialize($row['downvotes_ids']));
                 $data[] = $post;
