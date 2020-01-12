@@ -26,8 +26,6 @@
 				$sql = "UPDATE posts SET title='$title', body='$body', cat_id='$cat_id', images='$images' WHERE id = '$id'";
 				$result = query($sql);
 
-				echo $result;
-
 				if ($result){
 					$response['status'] = 202;
 					$response['message'] = "Edit Successfull";
