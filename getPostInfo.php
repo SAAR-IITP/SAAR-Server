@@ -22,7 +22,7 @@
             $row = fetch_array($result);
             $post_data['title'] = $row['title'];
             $post_data['body'] = $row['body'];
-            $post_data['post_time'] = $row['post_time'];
+            $post_data['post_time'] = format_date($row['post_time']);
             $post_data['images'] = $row['images'];
             $post_data['post_id'] = $row['id'];
             $post_data['user_id'] = $row['user_id'];
@@ -33,7 +33,7 @@
             $sql = "SELECT `thread_time`, `thread_body`, `thread_imgs`, `thread_upvotes`, `thread_downvotes`, `user_id` FROM `threads` WHERE `post_id`=$post_ID";
             $result = query($sql);
             while($row = fetch_array($result)){
-                $inst['time'] = $row['thread_time'];
+                $inst['time'] = format_date($row['thread_time']);
                 $inst['body'] = $row['thread_body'];
                 $inst['images'] = $row['thread_imgs'];
                 $inst['user_id'] = $row['user_id'];
