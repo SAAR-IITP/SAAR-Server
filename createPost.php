@@ -7,6 +7,8 @@
 		$response=array();
 
         $user_id = clean($_POST['user_id']);
+        $user_name = clean($_POST['user_name']);
+        $user_img = $_POST['user_img'];
         $cat_id = clean($_POST['cat_id']);
         $title = addslashes(clean($_POST['title']));
         $body = addslashes(clean($_POST['body']));
@@ -22,14 +24,14 @@
             $response['status'] = 408;
             
         }else{
-            $sql = "INSERT INTO `posts`(`user_id`, `cat_id`, `post_time`, `title`, `body`, `images`,`thread_ids`,`upvotes_ids`, `downvotes_ids`) VALUES ($user_id, $cat_id, NOW(), '$title','$body','$images','$thread_ids','$upvotes_ids','$downvotes_ids')";
+            $sql = "INSERT INTO `posts`(`user_id`, `user_name`, `user_img`, `cat_id`, `post_time`, `title`, `body`, `images`,`thread_ids`,`upvotes_ids`, `downvotes_ids`) VALUES ($user_id,'$user_name','$user_img', $cat_id, NOW(), '$title','$body','$images','$thread_ids','$upvotes_ids','$downvotes_ids')";
             $result = query($sql);
             if($result){
                 $response['status'] = 209;
                 $messages[] = "Posted Successfully";  
             }else{
                 $response['status'] = 408;
-                $messages[] = "Query Failed";
+                $messages[] = "Could not Post";
             }
             
         }
