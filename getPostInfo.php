@@ -33,17 +33,18 @@
             $post_data['downvotes'] = count(unserialize($row['downvotes_ids']));
             $post_data['no_of_comment'] = $row['no_of_comment'];
 
-            $sql = "SELECT `thread_time`, `user_name`, `user_img`, `thread_body`, `thread_imgs`, `thread_upvotes`, `thread_downvotes`, `user_id` FROM `threads` WHERE `post_id`=$post_ID";
+            $sql = "SELECT `thread_time`, `user_name`, `user_img`, `thread_body`, `thread_imgs`, `upvotes_ids`, `downvotes_ids`, `user_id`, `id` FROM `threads` WHERE `post_id`=$post_ID";
             $result = query($sql);
             while($row = fetch_array($result)){
+                $inst['comment_id'] = $row['id'];
                 $inst['time'] = format_date($row['thread_time']);
                 $inst['body'] = $row['thread_body'];
                 $inst['images'] = $row['thread_imgs'];
                 $inst['user_id'] = $row['user_id'];
                 $inst['user_name'] = $row['user_name'];
                 $inst['user_img'] = $row['user_img'];
-                $inst['upvotes'] = count(unserialize($row['thread_upvotes']));
-                $inst['downvotes'] = count(unserialize($row['thread_downvotes']));
+                $inst['upvotes'] = count(unserialize($row['upvotes_ids']));
+                $inst['downvotes'] = count(unserialize($row['downvotes_ids']));
                 $replies[] = $inst;
             }
             $response['data'] = $post_data;
