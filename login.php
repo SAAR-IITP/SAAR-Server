@@ -26,6 +26,7 @@
 
 				//Listing down the response
 				$messages['rollno']=$row['rollno'];
+				$messages['user_id'] = $row['id'];
 				$messages['first_name']=$row['first_name'];
 				$messages['last_name']=$row['last_name'];
 				$messages['email']=$row['email'];
