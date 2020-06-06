@@ -17,7 +17,7 @@
 		$country=clean($_POST['country']);
 		$state=clean($_POST['state']);
 		$city=clean($_POST['city']);
-		$achievements=clean($_POST['achievements']);
+		$about = clean($_POST['about']);
 
 		// Verification
 		$error = array();
@@ -39,7 +39,7 @@
 			echo json_encode($response);
 		}
 		else{
-			$sql="UPDATE alumnus SET phone='$phone', employment_type='$employment_type', present_employer='$present_employer', designation='$designation', fb_link='$fb_link', linkedin_link='$linkedin_link', address= '$address', country='$country', state='$state', city='$city', achievements='$achievements' WHERE rollno='$rollno'";
+			$sql="UPDATE alumnus SET phone='$phone', employment_type='$employment_type', present_employer='$present_employer', designation='$designation', fb_link='$fb_link', linkedin_link='$linkedin_link', address= '$address', country='$country', state='$state', city='$city', about='$about' WHERE rollno='$rollno'";
 			$result=query($sql);
 			$status=205;
 			$messages[]="Profile succesfully updated";
