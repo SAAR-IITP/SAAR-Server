@@ -139,7 +139,7 @@
 
 			if(send_email($email,$subject,$msg)){
 
-				$sql="INSERT INTO alumnus(rollno, first_name, last_name, email, phone, fb_link, linkedin_link, password, dob, graduation_year, degree, department, employment_type, present_employer, designation, address, country, state, city, achievements, verification_code, active, about) VALUES('$rollno', '$first_name', '$last_name', '$email', '$phone', '$fb_link', '$linkedin_link', '$password', '$dob', '$graduation_year', '$degree', '$department', '$employment_type', '$present_employer', '$designation', '$address', '$country', '$state', '$city', '$achievements', '$verification_code', 0, '$about')";
+				$sql="INSERT INTO alumnus(rollno, first_name, last_name, email, phone, fb_link, linkedin_link, password, dob, graduation_year, degree, department, employment_type, present_employer, designation, address, country, state, city, verification_code, active, about) VALUES('$rollno', '$first_name', '$last_name', '$email', '$phone', '$fb_link', '$linkedin_link', '$password', '$dob', '$graduation_year', '$degree', '$department', '$employment_type', '$present_employer', '$designation', '$address', '$country', '$state', '$city', '$verification_code', 0, '$about')";
 				$result=query($sql);
 
 				//Composing the response
