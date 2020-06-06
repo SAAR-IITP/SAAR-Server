@@ -29,7 +29,7 @@
 		$country=clean($_POST['country']);
 		$state=clean($_POST['state']);
 		$city=clean($_POST['city']);
-		$achievements=clean($_POST['achievements']);
+		$about = clean($_POST['about']);
 		$verification_code;
 
 		//Undergoing various data checks
@@ -122,7 +122,7 @@
 			$country=escape($country);
 			$state=escape($state);
 			$city=escape($city);
-			$achievements=escape($achievements);
+			$about = escape($about);
 
 			$password=sha1($password);//Encrypted password using sha1 hashing technique
 			$verification_code=mt_rand(10001,99999);
@@ -139,7 +139,7 @@
 
 			if(send_email($email,$subject,$msg)){
 
-				$sql="INSERT INTO alumnus(rollno, first_name, last_name, email, phone, fb_link, linkedin_link, password, dob, graduation_year, degree, department, employment_type, present_employer, designation, address, country, state, city, achievements, verification_code, active) VALUES('$rollno', '$first_name', '$last_name', '$email', '$phone', '$fb_link', '$linkedin_link', '$password', '$dob', '$graduation_year', '$degree', '$department', '$employment_type', '$present_employer', '$designation', '$address', '$country', '$state', '$city', '$achievements', '$verification_code', 0)";
+				$sql="INSERT INTO alumnus(rollno, first_name, last_name, email, phone, fb_link, linkedin_link, password, dob, graduation_year, degree, department, employment_type, present_employer, designation, address, country, state, city, achievements, verification_code, active, about) VALUES('$rollno', '$first_name', '$last_name', '$email', '$phone', '$fb_link', '$linkedin_link', '$password', '$dob', '$graduation_year', '$degree', '$department', '$employment_type', '$present_employer', '$designation', '$address', '$country', '$state', '$city', '$achievements', '$verification_code', 0, '$about')";
 				$result=query($sql);
 
 				//Composing the response
