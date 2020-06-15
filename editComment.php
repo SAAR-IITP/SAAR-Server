@@ -29,7 +29,7 @@
             if (row_count($result) == 1){
 
 
-            $sql = " UPDATE `threads`( `thread_body`, `thread_imgs`, `user_id`) VALUES ($post_id, '$user_name','$user_img', NOW(), '$body', '$images', $user_id, '$upvotes', '$downvotes')";
+            $sql = " UPDATE `threads`(`post_id`,`user_name`,`user_img`, `thread_time`, `thread_body`, `thread_imgs`, `user_id`,`upvotes_ids`,`downvotes_ids`) VALUES ($post_id, '$user_name','$user_img', NOW(), '$body', '$images', $user_id, '$upvotes', '$downvotes')";
             $result = query($sql);
 
             
@@ -37,10 +37,7 @@
 
             // may be we can also store these threads as array in post
             if($result){
-                $sql2 = "SELECT `no_of_comment` FROM `posts` WHERE `id`=$post_id";
-                $result2 = query($sql2);
-
-
+                
                 $messages[] = "Comment  Updated";
                 $response['status'] = 209;
             }else{
