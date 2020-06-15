@@ -29,7 +29,7 @@
             if (row_count($result) == 1){
 
 
-            $sql = " UPDATE `threads`(`post_id`,`user_name`,`user_img`, `thread_time`, `thread_body`, `thread_imgs`, `user_id`,`upvotes_ids`,`downvotes_ids`) VALUES ($post_id, '$user_name','$user_img', NOW(), '$body', '$images', $user_id, '$upvotes', '$downvotes')";
+            $sql = " UPDATE `threads`(`thread_body`, `thread_imgs`, `user_id`) VALUES ($post_id, '$user_name','$user_img', NOW(), '$body', '$images', $user_id, '$upvotes', '$downvotes')";
             $result = query($sql);
 
             
