@@ -29,7 +29,7 @@
             if (row_count($result) == 1){
 
 
-            $sql = " UPDATE `threads`(`post_id`,`user_name`,`user_img`, `thread_time`, `thread_body`, `thread_imgs`, `user_id`,`upvotes_ids`,`downvotes_ids`) VALUES ($post_id, '$user_name','$user_img', NOW(), '$body', '$images', $user_id, '$upvotes', '$downvotes')";
+            $sql = " UPDATE `threads`( `thread_body`, `thread_imgs`, `user_id`) VALUES ($post_id, '$user_name','$user_img', NOW(), '$body', '$images', $user_id, '$upvotes', '$downvotes')";
             $result = query($sql);
 
             
@@ -39,13 +39,8 @@
             if($result){
                 $sql2 = "SELECT `no_of_comment` FROM `posts` WHERE `id`=$post_id";
                 $result2 = query($sql2);
-                if(row_count($result2)==1){
-                    $row = fetch_array($result2);
-                    $initial = $row['no_of_comment'];
-                    $final = $initial + 1;
-                    $sql3 = "UPDATE `posts` SET `no_of_comment`=$final WHERE `id`=$post_id";
-                    $result3 = query($sql3);
-                }
+
+
                 $messages[] = "Comment  Updated";
                 $response['status'] = 209;
             }else{
