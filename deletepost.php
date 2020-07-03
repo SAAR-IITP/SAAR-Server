@@ -7,19 +7,20 @@
 
 		$post_id = $_POST['post_id'];
 		$user_id = $_POST['user_id'];
+		$access_token_post = $_POST['access_token'];
 
 		$sql = "SELECT * FROM posts WHERE id=$post_id";
 		$result = query($sql);
 		$row1 = fetch_array($result);
 		$user_id_post = $row1['user_id'];
 
-		$sql1 = "SELECT * FROM alumnus WHERE user_id=$user_id_post";
+		$sql1 = "SELECT * FROM alumnus WHERE id=$user_id_post";
 		$result1 = query($sql1);
 		$row = fetch_array($result1);
 		$access_token = $row['access_token'];
 
 
-		if($user_id==$user_id_post && $access_token==$_SESSION['access_token'])
+		if($user_id==$user_id_post && $access_token==$access_token_post)
 		{
 			$sql = "DELETE FROM posts WHERE id=$post_id";
 			$result = query($sql);
