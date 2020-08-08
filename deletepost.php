@@ -24,13 +24,15 @@
 		{
 			$sql = "DELETE FROM posts WHERE id=$post_id";
 			$result = query($sql);
-			if(row_count($result)==1)
+			if($result)
 			{
 				$sql1 = "DELETE FROM threads WHERE post_id=$post_id";
 				$result1 = query($sql1);
 				$response['status']=209;
 				$messages[]="post deleted succsesfully";
-			}else{
+			}
+			else
+			{
 				$response['status']=408;
 				$messages[]="something Went wrong retry!!";
 			}
@@ -51,3 +53,4 @@
 
    }
 ?>
+
