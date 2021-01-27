@@ -29,7 +29,7 @@
 				";
 				if(send_email($email,$subject,$msg)){
 					$status=201;
-					$messages[]= "Succesfully sent the OTP in your email.";
+					$messages[]= "Succesfully sent the OTP in your email also check spam.";
 				}else{
 					$status=401;
 					$messages[]= "Failed to send OTP in your email.";
