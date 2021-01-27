@@ -34,7 +34,7 @@
 			echo json_encode($response);
 		}
 		else{
-			$email = "vivek_ch17@iitp.ac.in";
+			$email = "saar@iitp.ac.in";
 			$subject = "Alumni $name wants to say something.";
 			$msg = "Alumni Name : $name <br> 
 							Alumni Email : $useremail <br><br>

@@ -144,7 +144,7 @@
 
 				//Composing the response
 				$response['status']=200;
-				$messages[]="You have been registered succesfully. Please check your email to get the otp and activate your account.";
+				$messages[]="You have been registered succesfully. Please check your email to get the otp and activate your account also check spam";
 				$response['messages']=$messages;
 				echo json_encode($response);
 
