@@ -21,13 +21,13 @@
 		$comments=clean($_POST['comments']);
 
 		//Undergoing various data checks
-		if(empty($rollno)){
+		if(empty($roll_no)){
 			$errors[]="Roll No cannot be empty.";
 		}
-		if(strlen($rollno)<8){
+		if(strlen($roll_no)<=8){
 			$errors[]="Your Roll No cannot have less then 8 characters.";
 		}
-		if(rollno_exists($rollno)){
+		if(rollno_exists($roll_no)){
 			$errors[]="The roll no you entered has already been registered.";
 		}
 
