@@ -24,11 +24,8 @@
 		if(empty($roll_no)){
 			$errors[]="Roll No cannot be empty.";
 		}
-		if(strlen($roll_no)<=8){
+		if(strlen($roll_no)<8){
 			$errors[]="Your Roll No cannot have less then 8 characters.";
-		}
-		if(rollno_exists($roll_no)){
-			$errors[]="The roll no you entered has already been registered.";
 		}
 
 		if(empty($first_name)){
@@ -40,9 +37,6 @@
 
 		if(strlen($email)<9){
 			$errors[]="Your email cannot have less then 9 characters.";
-		}
-		if(email_exists($email)){
-			$errors[]="The email you are trying to use has already been registered.";
 		}
 
 		if(empty($phone)){
