@@ -24,7 +24,7 @@
 		if(empty($roll_no)){
 			$errors[]="Roll No cannot be empty.";
 		}
-		if(strlen($roll_no)<=8){
+		if(strlen($roll_no)<8){
 			$errors[]="Your Roll No cannot have less then 8 characters.";
 		}
 		if(rollno_exists($roll_no)){
