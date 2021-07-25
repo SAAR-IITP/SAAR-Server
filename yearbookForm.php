@@ -1,5 +1,6 @@
 <?php
-	include("init.php");//Includes all the necessary files
+	include("init.php");
+	//Includes all the necessary files
 	
 	if($_SERVER['REQUEST_METHOD']=="POST"){
 
