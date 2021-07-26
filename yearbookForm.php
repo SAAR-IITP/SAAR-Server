@@ -69,6 +69,7 @@
 		$uploadfile_1 = $uploaddir . basename($_FILES['portrait_pic']['name']);
 		if (!move_uploaded_file($_FILES['portrait_pic']['tmp_name'], $uploadfile_1)) {
 			$errors[]="Error in uploading portrait pic.\n" . $_FILES["portrait_pic"]["error"];
+			echo print_r($_FILES);
 		}
 
 		// image files
