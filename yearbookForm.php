@@ -70,17 +70,22 @@
 
 		// image files
 		foreach($_FILES["group_pic"]["error"] as $key => $error) {
-			$file_name=basename($_FILES["group_pic"]["name"][$key]);
-			$file_tmp=basename($_FILES["group_pic"]["tmp_name"][$key]);
-			$ext=pathinfo($file_name,PATHINFO_EXTENSION);
+			if ($error == UPLOAD_ERR_OK) {
+				$file_name=basename($_FILES["group_pic"]["name"][$key]);
+				$file_tmp=basename($_FILES["group_pic"]["tmp_name"][$key]);
+				$ext=pathinfo($file_name,PATHINFO_EXTENSION);
 
-			if(!file_exists($uploaddir . $file_name)) {
-				move_uploaded_file($file_tmp, $uploaddir . $file_name);
+				if(!file_exists($uploaddir . $file_name)) {
+					move_uploaded_file($file_tmp, $uploaddir . $file_name);
+				}
+				else {
+					$filename=basename($file_name,$ext);
+					$newFileName=$filename . " - " . time() . "." .$ext;
+					move_uploaded_file($file_tmp, $uploaddir . $newFileName);
+				}
 			}
-			else {
-				$filename=basename($file_name,$ext);
-				$newFileName=$filename . " - " . time() . "." .$ext;
-				move_uploaded_file($file_tmp, $uploaddir . $newFileName);
+			else{
+				$errors[]="Some files already exists.";
 			}
 		}
 
