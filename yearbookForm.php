@@ -66,24 +66,41 @@
 			mkdir($uploaddir);
 		}
 		
-		$uploadfile_1 = $uploaddir . basename($_FILES['portrait_pic']['name']);
-		if (!move_uploaded_file($_FILES['portrait_pic']['tmp_name'], $uploadfile_1)) {
-			$errors[]="Error in uploading portrait pic. " . $_FILES["portrait_pic"]["error"];
-		}
+		// $uploadfile_1 = $uploaddir . basename($_FILES['portrait_pic']['name']);
+		// if (!move_uploaded_file($_FILES['portrait_pic']['tmp_name'], $uploadfile_1)) {
+		// 	$errors[]="Error in uploading portrait pic. " . $_FILES["portrait_pic"]["error"];
+		// }
+		if ($_FILES['portrait_pic']['error'] == UPLOAD_ERR_OK) {
+			$file_name='portrait_' . basename($_FILES["portrait_pic"]["name"]);
+			$file_tmp=basename($_FILES["portrait_pic"]["tmp_name"]);
+			$ext=pathinfo($file_name,PATHINFO_EXTENSION);
 
-		if(!is_uploaded_file($_FILES["portrait_pic"]["Beidou - Cropped.jpg"])){
-			$errors[]="File didnt upload properly.";
+			if(!file_exists($uploaddir . $file_name)) {
+				if(!move_uploaded_file($file_tmp, $uploaddir . $file_name)){
+					$errors[]="Error in uploading portrait pic. " . $_FILES["portrait_pic"]["error"];
+				};
+			}
+			else {
+				$filename=basename($file_name,$ext);
+				$newFileName=$filename . " - " . time() . "." .$ext;
+				move_uploaded_file($file_tmp, $uploaddir . $newFileName);
+			}
+		}
+		else{
+			$errors[]="Upload error in portrait pic.";
 		}
 
 		// image files
 		foreach($_FILES["group_pic"]["error"] as $key => $error) {
 			if ($error == UPLOAD_ERR_OK) {
-				$file_name=basename($_FILES["group_pic"]["name"][$key]);
+				$file_name='group_' . basename($_FILES["group_pic"]["name"][$key]);
 				$file_tmp=basename($_FILES["group_pic"]["tmp_name"][$key]);
 				$ext=pathinfo($file_name,PATHINFO_EXTENSION);
 
 				if(!file_exists($uploaddir . $file_name)) {
-					move_uploaded_file($file_tmp, $uploaddir . $file_name);
+					if(!move_uploaded_file($file_tmp, $uploaddir . $file_name)){
+						$errors[]="Error in uploading group pic. " . $_FILES["group_pic"]["error"];
+					};
 				}
 				else {
 					$filename=basename($file_name,$ext);
@@ -92,7 +109,7 @@
 				}
 			}
 			else{
-				$errors[]="Some files already exists.";
+				$errors[]="Upload error in group pics.";
 			}
 		}
 
