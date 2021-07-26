@@ -46,6 +46,7 @@
 				$messages['city']=$row['city'];
 				$messages['achievements']=$row['achievements'];
 				$messages['img_url']=$row['img_url'];
+				$messages['about']=$row['about'];
 				$messages['access_token']=$access_token;
 
 				$response['status']=202;
