@@ -70,17 +70,17 @@
 
 		// image files
 		foreach($_FILES["group_pic"]["error"] as $key => $error) {
-			$file_name=$_FILES["group_pic"]["name"][$key];
-			$file_tmp=$_FILES["group_pic"]["tmp_name"][$key];
+			$file_name=basename($_FILES["group_pic"]["name"][$key]);
+			$file_tmp=basename($_FILES["group_pic"]["tmp_name"][$key]);
 			$ext=pathinfo($file_name,PATHINFO_EXTENSION);
 
 			if(!file_exists($uploaddir . $file_name)) {
-				move_uploaded_file($file_tmp, "../../yearbook2021/" . $file_name);
+				move_uploaded_file($file_tmp, $uploaddir . $file_name);
 			}
 			else {
 				$filename=basename($file_name,$ext);
 				$newFileName=$filename . " - " . time() . "." .$ext;
-				move_uploaded_file($file_tmp, "../../yearbook2021/" . $newFileName);
+				move_uploaded_file($file_tmp, $uploaddir . $newFileName);
 			}
 		}
 
