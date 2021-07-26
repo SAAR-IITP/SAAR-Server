@@ -61,19 +61,26 @@
 			$errors[]="Department field cannot be empty.";
 		}
 
+		$uploaddir = "../../yearbook2021/$roll_no/";
+		
+		$uploadfile_1 = $uploaddir . basename($_FILES['portrait_pic']['name']);
+		if (!move_uploaded_file($_FILES['portrait_pic']['tmp_name'], $uploadfile_1)) {
+			$errors[]="File already exists.";
+		}
+
 		// image files
-		foreach($_FILES["files"]["tmp_name"] as $key=>$tmp_name) {
-			$file_name=$_FILES["files"]["name"][$key];
-			$file_tmp=$_FILES["files"]["tmp_name"][$key];
+		foreach($_FILES["group_pic"]["error"] as $key => $error) {
+			$file_name=$_FILES["group_pic"]["name"][$key];
+			$file_tmp=$_FILES["group_pic"]["tmp_name"][$key];
 			$ext=pathinfo($file_name,PATHINFO_EXTENSION);
 
-			if(!file_exists("../yearbook2021/" . $file_name)) {
-				move_uploaded_file($file_tmp=$_FILES["files"]["tmp_name"][$key], "../../yearbook2021/" . "/" . $file_name);
+			if(!file_exists($uploaddir . $file_name)) {
+				move_uploaded_file($file_tmp, "../../yearbook2021/" . $file_name);
 			}
 			else {
 				$filename=basename($file_name,$ext);
-				$newFileName=$filename.time() . "." .$ext;
-				move_uploaded_file($file_tmp=$_FILES["files"]["tmp_name"][$key], "../../yearbook2021/" . "/" . $newFileName);
+				$newFileName=$filename . " - " . time() . "." .$ext;
+				move_uploaded_file($file_tmp, "../../yearbook2021/" . $newFileName);
 			}
 		}
 
