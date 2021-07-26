@@ -26,7 +26,7 @@
 				$result1=query($sql1);
 				$result2=query($sql2);
 				
-				$messages['ybk__submitted']=(row_count(fetch_array($result2)) == 1);
+				$messages['ybk__submitted']=(row_count($result2) == 1);
 
 				//Listing down the response
 				$messages['rollno']=$row['rollno'];
