@@ -60,8 +60,11 @@
 		if(strlen($dept)==0){
 			$errors[]="Department field cannot be empty.";
 		}
-
+		
 		$uploaddir = "../../yearbook2021/$roll_no/";
+		if(!file_exists($uploaddir)){
+			mkdir($uploaddir);
+		}
 		
 		$uploadfile_1 = $uploaddir . basename($_FILES['portrait_pic']['name']);
 		if (!move_uploaded_file($_FILES['portrait_pic']['tmp_name'], $uploadfile_1)) {
