@@ -113,8 +113,6 @@
 			}
 		}
 
-		$errors[] = $_POST['portrait_pic'];
-
 		//Returning the errors to the request page, if errors are found
 		if(!empty($errors)){
 			$response['status']=400;
