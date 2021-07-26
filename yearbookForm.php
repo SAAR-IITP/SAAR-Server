@@ -71,6 +71,10 @@
 			$errors[]="Error in uploading portrait pic. " . $_FILES["portrait_pic"]["error"];
 		}
 
+		if(!is_uploaded_file($_FILES["portrait_pic"]["Beidou - Cropped.jpg"])){
+			$errors[]="File didnt upload properly.";
+		}
+
 		// image files
 		foreach($_FILES["group_pic"]["error"] as $key => $error) {
 			if ($error == UPLOAD_ERR_OK) {
