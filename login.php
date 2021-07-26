@@ -22,7 +22,7 @@
 				$access_token=$email.microtime();
 				$access_token=sha1($access_token);
 				$sql1="UPDATE alumnus SET access_token='$access_token' WHERE email='$email'";
-				$sql2="SELECT * FROM yearbook2021 WHERE roll_no='{$row["roll_no"]}'";
+				$sql2="SELECT * FROM yearbook2021 WHERE roll_no='{$row["rollno"]}'";
 				$result1=query($sql1);
 				$result2=query($sql2);
 				
