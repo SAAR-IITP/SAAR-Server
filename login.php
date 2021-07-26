@@ -22,7 +22,11 @@
 				$access_token=$email.microtime();
 				$access_token=sha1($access_token);
 				$sql1="UPDATE alumnus SET access_token='$access_token' WHERE email='$email'";
+				$sql2="SELECT * FROM yearbook2021 WHERE roll_no='{$row["rollno"]}'";
 				$result1=query($sql1);
+				$result2=query($sql2);
+				
+				$messages['ybk__submitted']=(row_count(fetch_array($result2)) == 1);
 
 				//Listing down the response
 				$messages['rollno']=$row['rollno'];
