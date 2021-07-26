@@ -4,10 +4,6 @@
 	
 	if($_SERVER['REQUEST_METHOD']=="POST"){
 
-		mkdir('./yearbok');
-		mkdir('../yearbok');
-		mkdir('../../yearbok');
-
 		//Initializing the variables
 		$errors=array();
 		$messages=array();
